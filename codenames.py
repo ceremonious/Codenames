@@ -28,7 +28,8 @@ def cosSim(word1, word2, wordVectors):
         output = 0
     return output
 
-
+#Stores the word vectors in a list of tuples where the first entry is the
+#vector and the second entry is the lenght of the vector
 def readVectors():
     f = open('wordVectors.txt', 'r')
     wordVectors = {}
@@ -47,6 +48,7 @@ def readWordList():
         words.append(line.rstrip().lower())
     return words
 
+#Create a Codenames board using the list of words
 def createBoard(wordList):
     tempList = wordList[:]
     random.shuffle(tempList)
@@ -60,6 +62,7 @@ def createBoard(wordList):
     board["black"].append(tempList.pop())
     return board
 
+#The best clue is the clue with the greatest cosine similarity
 def bestClue(clues):
     maxSim = 0
     maxClue = ""
@@ -68,6 +71,7 @@ def bestClue(clues):
             maxClue = key
     return maxClue
 
+#A clue is only legal if the clue does not appear in the word
 def legalClue(word1, word2):
     return (word1 not in word2 and word2 not in word1)
 
